@@ -89,7 +89,7 @@ function install_python_pip() {
     yum install -y python27-devel python27-pip
   elif [ "${OS_TYPE}" == "redhat7" ] || [ "${OS_TYPE}" == "amazonlinux2" ] ; then
     echo "Installing python36 with deps"
-    yum install -y python36 python36-pip python36-devel python36-setuptools
+    yum install -y python36 python36-pip python3-devel python36-setuptools
     make_pip3_default_pip
   else
     yum install -y python-pip python-devel
