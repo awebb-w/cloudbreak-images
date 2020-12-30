@@ -88,11 +88,14 @@ function install_python_pip() {
   if [ "${OS_TYPE}" == "amazonlinux" ]; then
     yum install -y python27-devel python27-pip
   elif [ "${OS_TYPE}" == "redhat7" ] || [ "${OS_TYPE}" == "amazonlinux2" ] ; then
-    echo "Installing python36 with deps"
+    echo "Installing python36 with deps + AWS CLI"
 	subscription-manager register --username "${RH_USER}" --password "${RH_PW}" --auto-attach &&
 	subscription-manager repos --enable=rhel-7-server-optional-rpms &&
     yum install -y python36 python36-pip python36-devel python36-setuptools
-    make_pip3_default_pip
+    make_pip3_default_pip &&
+	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &&
+	unzip awscliv2.zip &&
+	sudo ./aws/install
   else
     yum install -y python-pip python-devel
   fi
