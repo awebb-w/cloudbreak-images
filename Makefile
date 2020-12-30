@@ -4,7 +4,7 @@ STACK_VERSION ?= ""
 ATLAS_PROJECT ?= "cloudbreak"
 ENABLE_POSTPROCESSORS ?= ""
 CUSTOM_IMAGE_TYPE ?= "hortonworks"
-IMAGE_OWNER ?= "CDL Team"
+IMAGE_OWNER ?= "cdl"
 #for oracle JDK use oracle-java
 OPTIONAL_STATES ?= ""
 # only for oracle JDK
