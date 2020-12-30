@@ -99,7 +99,7 @@
       "region": "us-east-1",
       "ami_regions": "{{ user `aws_ami_regions` }}",
       "ssh_pty": true,
-      "source_ami": "ami-011b3ccf1bd6db744",
+      "source_ami": "ami-0916c408cb02e310b",
       "instance_type": "{{ user `aws_instance_type` }}",
       "ssh_username": "ec2-user",
       "ena_support": true,
