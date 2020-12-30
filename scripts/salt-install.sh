@@ -89,7 +89,8 @@ function install_python_pip() {
     yum install -y python27-devel python27-pip
   elif [ "${OS_TYPE}" == "redhat7" ] || [ "${OS_TYPE}" == "amazonlinux2" ] ; then
     echo "Installing python36 with deps"
-	yum-config-manager --enable rhel-7-server-optional-rpms &&
+	subscription-manager register --username "${RH_USER}" --password "${RH_PW}" --auto-attach &&
+	subscription-manager repos --enable=rhel-7-server-optional-rpms &&
     yum install -y python36 python36-pip python36-devel python36-setuptools
     make_pip3_default_pip
   else
