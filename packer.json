@@ -94,7 +94,7 @@
   },
   "builders": [
     {
-      "name": "aws-rhel",
+      "name": "aws-centos7",
       "type": "amazon-ebs",
       "region": "us-east-1",
       "ami_regions": "{{ user `aws_ami_regions` }}",
