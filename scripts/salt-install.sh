@@ -78,7 +78,10 @@ function enable_epel_repository() {
   elif [ "${OS}" == "amazonlinux" ] ; then
     yum-config-manager --enable epel
   elif [ "${OS_TYPE}" == "redhat7" ] ; then
-    curl https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -o epel-release-latest-7.noarch.rpm && yum install -y ./epel-release-latest-7.noarch.rpm
+    curl https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -o epel-release-latest-7.noarch.rpm && yum install -y ./epel-release-latest-7.noarch.rpm &&
+	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &&
+	unzip awscliv2.zip &&
+	sudo ./aws/install 
   else
     yum install -y epel-release
   fi
@@ -88,7 +91,7 @@ function install_python_pip() {
   if [ "${OS_TYPE}" == "amazonlinux" ]; then
     yum install -y python27-devel python27-pip
   elif [ "${OS_TYPE}" == "redhat7" ] || [ "${OS_TYPE}" == "amazonlinux2" ] ; then
-    echo "Installing python36 with deps + AWS CLI"
+    echo "Installing python36 with deps"
 	subscription-manager register --username "${RH_USER}" --password "${RH_PW}" --auto-attach &&
 	subscription-manager repos --enable=rhel-7-server-optional-rpms &&.
     yum install -y python36 python36-pip python36-devel python36-setuptools
