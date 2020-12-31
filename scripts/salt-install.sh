@@ -91,7 +91,7 @@ function install_python_pip() {
     echo "Installing python36 with deps"
 	subscription-manager register --username "${RH_USER}" --password "${RH_PW}" --auto-attach &&
 	subscription-manager repos --enable=rhel-7-server-rhui-rpms &&
-	subscription-manager repos --enable=rhel-7-server-optional-rpms &&
+	subscription-manager repos --enable=rhel-7-server-rpms &&
 	yum install https://repo.saltstack.com/py3/redhat/salt-py3-repo-latest.el8.noarch.rpm &&
     yum install -y python36 python36-pip python36-devel python36-setuptools
     make_pip3_default_pip 
