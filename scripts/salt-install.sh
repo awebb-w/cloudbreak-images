@@ -61,7 +61,7 @@ function install_with_yum() {
   yum clean metadata
   enable_epel_repository
   yum groupinstall -y 'Development Tools'
-  if [ "${OS_TYPE}" == "redhat7" ] ; then
+  if [ "${OS_TYPE}" == "redhat6" ] ; then
     cp /tmp/repos/${SALT_REPO_FILE} /etc/yum.repos.d/${SALT_REPO_FILE}
     cp /tmp/repos/saltstack-gpg-key.pub /etc/pki/rpm-gpg/saltstack-gpg-key.pub
     yum install -y zeromq zeromq-devel
@@ -78,11 +78,7 @@ function enable_epel_repository() {
   elif [ "${OS}" == "amazonlinux" ] ; then
     yum-config-manager --enable epel
   elif [ "${OS_TYPE}" == "redhat7" ] ; then
-    curl https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -o epel-release-latest-7.noarch.rpm && yum install -y ./epel-release-latest-7.noarch.rpm &&
-	yum install -y unzip &&
-	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &&
-	unzip awscliv2.zip &&
-	sudo ./aws/install 
+    curl https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -o epel-release-latest-7.noarch.rpm && yum install -y ./epel-release-latest-7.noarch.rpm
   else
     yum install -y epel-release
   fi
@@ -94,6 +90,7 @@ function install_python_pip() {
   elif [ "${OS_TYPE}" == "redhat7" ] || [ "${OS_TYPE}" == "amazonlinux2" ] ; then
     echo "Installing python36 with deps"
 	subscription-manager register --username "${RH_USER}" --password "${RH_PW}" --auto-attach &&
+	subscription-manager repos --enable=rhel-7-server-rhui-rpms &&
 	subscription-manager repos --enable=rhel-7-server-optional-rpms &&
 	yum install https://repo.saltstack.com/py3/redhat/salt-py3-repo-latest.el8.noarch.rpm &&
     yum install -y python36 python36-pip python36-devel python36-setuptools
