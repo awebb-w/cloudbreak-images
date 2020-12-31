@@ -61,7 +61,7 @@ function install_with_yum() {
   yum clean metadata
   enable_epel_repository
   yum groupinstall -y 'Development Tools'
-  if [ "${OS_TYPE}" == "redhat6" ] ; then
+  if [ "${OS_TYPE}" == "redhat7" ] ; then
     cp /tmp/repos/${SALT_REPO_FILE} /etc/yum.repos.d/${SALT_REPO_FILE}
     cp /tmp/repos/saltstack-gpg-key.pub /etc/pki/rpm-gpg/saltstack-gpg-key.pub
     yum install -y zeromq zeromq-devel
