@@ -56,7 +56,6 @@ packages_install:
       - ipa-client
       - openldap
       - openldap-clients
-      - awscli
 
 {% if pillar['subtype'] != 'Docker' %}
 
