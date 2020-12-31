@@ -92,11 +92,7 @@ function install_python_pip() {
 	subscription-manager register --username "${RH_USER}" --password "${RH_PW}" --auto-attach &&
 	subscription-manager repos --enable=rhel-7-server-optional-rpms &&.
     yum install -y python36 python36-pip python36-devel python36-setuptools
-    make_pip3_default_pip &&
-	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &&
-	unzip awscliv2.zip &&
-	sudo ./aws/install &&
-	cd /
+    make_pip3_default_pip 
   else
     yum install -y python-pip python-devel
   fi
