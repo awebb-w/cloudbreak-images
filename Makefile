@@ -144,11 +144,11 @@ show-image-name:
 
 build-aws-centos7-base:
 	$(ENVS) \
-	AWS_AMI_REGIONS="us-west-1" \
-	OS=centos7 \
+	AWS_AMI_REGIONS="us-east-1" \
+	OS=redhat7 \
 	OS_TYPE=redhat7 \
 	ATLAS_ARTIFACT_TYPE=amazon \
-	SALT_INSTALL_OS=centos \
+	SALT_INSTALL_OS=redhat \
 	./scripts/packer.sh build -only=aws-centos7 $(PACKER_OPTS)
 
 build-aws-centos7: export IMAGE_NAME := $(IMAGE_NAME)
